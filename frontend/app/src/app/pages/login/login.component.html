@@ -1,6 +1,6 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="login-box">
   <div class="user-icon">
-    <i nz-icon nzType="user" nzTheme="outline"></i>
+    <i class="user-icon__icon" nz-icon nzType="user" nzTheme="outline"></i>
   </div>
 
   <nz-form-item>
@@ -10,7 +10,6 @@
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
-
 
   <nz-form-item>
     <nz-form-control nzErrorTip="Please input your password!" nzHasFeedback [nzValidateStatus]="validateForm.controls['password']">
