@@ -17,6 +17,8 @@ import {NzIconModule} from "ng-zorro-antd/icon";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import {AuthService} from "./services/auth/auth.service";
+import { AUTH_SERVICE_TOKEN } from "./services/auth/auth.service.token";
 
 registerLocaleData(en);
 
@@ -40,7 +42,8 @@ registerLocaleData(en);
     NzCheckboxModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US }
+    { provide: NZ_I18N, useValue: en_US },
+    { provide: AUTH_SERVICE_TOKEN, useClass: AuthService }
   ],
   bootstrap: [AppComponent]
 })

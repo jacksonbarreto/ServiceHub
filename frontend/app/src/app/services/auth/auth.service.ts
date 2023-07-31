@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
-import { TOKEN_KEY } from '../constants';
+import { TOKEN_KEY } from '../../constants';
+import {IAuthService} from "../auth.service.interface";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements IAuthService{
   private apiUrl = 'https://your-api-url.com';
 
   constructor(private http: HttpClient) { }

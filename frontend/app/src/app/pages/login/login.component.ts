@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {NzNotificationService} from 'ng-zorro-antd/notification';
 import {TOKEN_KEY} from '../../constants';
-import {AuthService} from "../../services/auth.service";
+import { AUTH_SERVICE_TOKEN } from "../../services/auth/auth.service.token";
+import { IAuthService } from '../../services/auth.service.interface';
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,8 +15,8 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   validateForm: FormGroup = this.fb.group({});
 
-  constructor(private fb: FormBuilder, private notification: NzNotificationService, private authService: AuthService,
-              private router: Router) {
+  constructor(private fb: FormBuilder, private notification: NzNotificationService,
+              @Inject(AUTH_SERVICE_TOKEN) private authService: IAuthService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -57,9 +58,7 @@ export class LoginComponent implements OnInit {
               'Network Error',
               'An unexpected error occurred. Please try again later.'
             );
-            console.error('Network error:', error); // log the error to the console
           }
-          // aqui posso inserir uma chamada para registrar o log com Sentry ou o LogRocket
         }
       });
 
