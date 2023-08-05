@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { TOKEN_KEY } from '../../constants';
 import {IAuthService} from "../auth.service.interface";
+import {of} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -12,10 +13,13 @@ export class AuthService implements IAuthService{
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string) {
-    return this.http.post<{token: string}>(`${this.apiUrl}/login`, {username, password})
-      .pipe(tap(res => {
-        localStorage.setItem(TOKEN_KEY, res.token);
-      }));
+    // return moked data
+    const mockedResponse = { token: 'mockedToken' };
+    return of(mockedResponse);
+    //return this.http.post<{token: string}>(`${this.apiUrl}/login`, {username, password})
+    //  .pipe(tap(res => {
+    //    localStorage.setItem(TOKEN_KEY, res.token);
+    //  }));
   }
 
   logout() {

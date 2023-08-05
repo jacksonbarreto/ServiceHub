@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   hidePassword: boolean = true;
   validateForm: FormGroup = this.fb.group({});
 
+
   constructor(private fb: FormBuilder, private notification: NzNotificationService,
               @Inject(AUTH_SERVICE_TOKEN) private authService: IAuthService, private router: Router) {
   }

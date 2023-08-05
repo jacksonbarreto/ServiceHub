@@ -8,7 +8,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
-      - servicehub_network
+      - automation_hub_network
 
   frontend:
     build: ./frontend
@@ -17,7 +17,7 @@ services:
       - db
       - backend
     networks:
-      - servicehub_network
+      - automation_hub_network
 
   backend:
     build: ./backend
@@ -25,26 +25,27 @@ services:
     depends_on:
       - db
     networks:
-      - servicehub_network
+      - automation_hub_network
 
   db:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: servicehub
+      POSTGRES_USER: postgres
       #POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_PASSWORD: test
-      POSTGRES_DB: servicehub
+      POSTGRES_DB: automation_hub
     volumes:
       - ./db_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "5432:5432"
     networks:
-      - servicehub_network
+      - automation_hub_network
 
 volumes:
   db_data:
 
 networks:
-  servicehub_network:
+  automation_hub_network:
     driver: bridge
