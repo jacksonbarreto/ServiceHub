@@ -16,3 +16,9 @@ CREATE TABLE IF NOT EXISTS users
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO users (email, password)
+SELECT 'jb@ipvc.pt', '$2b$10$qOnd8fkxcpqWvwey31V.B.ZGsMCed47ovuUXnkn/MvOTQhTzfg0XS'
+WHERE NOT EXISTS (
+    SELECT 1 FROM users WHERE email = 'jb@ipvc.pt'
+);

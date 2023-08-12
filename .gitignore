@@ -133,3 +133,4 @@ dist
 
 .vscode
 dist/
+db_data/

@@ -1,11 +1,13 @@
-FROM node:20.5.0-slim
+FROM node:lts
 
 WORKDIR /app
 
 COPY package*.json ./
 
-# RUN npm install
+RUN npm install
 
 COPY . .
 
-# CMD [ "node", "server.js" ]
+RUN npm run build
+
+CMD [ "node", "dist/server.js" ]
